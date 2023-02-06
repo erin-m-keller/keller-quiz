@@ -1,8 +1,24 @@
+/************************************************
+*
+*   Main Stylesheet
+*   @version (1.0)
+*   @date (2023)
+*
+*   1.) GENERAL ______________________ @general
+*   2.) CARD _________________________ @card
+*
+************************************************/
+
+/************************************************
+   GENERAL                              @general
+
+   The base styles for the page, text
+   and links. Includes utility class styles
+************************************************/
 * {
     margin: 0;
     padding: 0;
 }
-
 header,
 footer {
     width: 100%;
@@ -10,12 +26,10 @@ footer {
     background-color: #1F00FF;
     color: white;
 }
-
 h1,
 h2 {
     text-align: center;
 }
-
 img {
     display: block;
     height: 50px;
@@ -23,17 +37,20 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
-
 ul {
     padding-left: 40px;
     font-size: 20px;
 }
-
 p {
     text-align: center;
     font-size: 30px;
 }
 
+/************************************************
+   CARD                                     @card
+
+   The style for the card
+************************************************/
 .card {
     width: 80%;
     margin: 40px auto;
