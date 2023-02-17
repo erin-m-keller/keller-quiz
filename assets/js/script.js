@@ -217,10 +217,10 @@ function checkAnswer() {
         // display success message to the user
         msgWrapper.innerHTML = "<div class='alert alert-success' role='alert'>Correct! " + selectedAnswer + " is the correct response. Great job!</div>";
       } else {
-        // deduct 10 seconds from the timer
-        timeRemaining -= 10;
+        // deduct time from the timer
+        timeRemaining -= 15;
         // display error message to the user
-        msgWrapper.innerHTML = "<div class='alert alert-danger' role='alert'>Incorrect. " + selectedAnswer + " is not the correct response. The correct choice was " + quizQuestions[qId].answer + ". 5 seconds have been deducted from the timer.</div>";
+        msgWrapper.innerHTML = "<div class='alert alert-danger' role='alert'>Incorrect. " + selectedAnswer + " is not the correct response. The correct choice was " + quizQuestions[qId].answer + ". Time has been deducted from the timer.</div>";
       }
       // end once checked radio is available
       break;
