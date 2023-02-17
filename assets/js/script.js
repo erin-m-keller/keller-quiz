@@ -71,6 +71,11 @@ function handleForm(event) {
   checkAnswer();
 };
 
+function timesUp() {
+  // redirect to times up page
+  window.location.href = "./times-up.html";
+}
+
 function startQuiz() {
   var parent = document.getElementById("time-wrapper"),
       para = document.createElement("p"),
@@ -89,26 +94,21 @@ function startQuiz() {
     timeRemaining--;
     if (timeRemaining <= 0) {
       // time is up
-      span.innerHTML = "";
-      para.innerHTML = "";
-      clearInterval(quizTimer);
       node = document.createTextNode("0");
       span.appendChild(node);
       para.appendChild(span);
+      span.innerHTML = "";
+      para.innerHTML = "";
+      timesUp();
+      clearInterval(quizTimer);
     }
   }, 1000); // 1000 milliseconds = 1 second
   // append para to parent element to display on screen
   parent.appendChild(para);
   // hide start wrapper, fade in question wrapper
   document.getElementsByClassName("start-wrapper")[0].style.display = "none";
-  if (timeRemaining > 0) {
-    // display questions
-    document.getElementsByClassName("question-wrapper")[0].style.opacity = 1;
-  } else {
-    // hide questions and display time's up message
-    document.getElementById("timeup-wrapper")[0].style.opacity = 1;
-    document.getElementsByClassName("question-wrapper")[0].style.opacity = 0;
-  }
+  // display questions
+  document.getElementsByClassName("question-wrapper")[0].style.opacity = 1;
   renderQuestion();
 };
 

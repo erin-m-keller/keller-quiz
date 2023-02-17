@@ -207,7 +207,7 @@ form#quiz-form label {
 }
 #submission-wrapper,
 .question-wrapper,
-#timeup-wrapper {
+.timeup-wrapper {
     position: relative;
     opacity: 0;
     -webkit-transition: opacity 3s;
@@ -225,6 +225,26 @@ form#quiz-form label {
     width: 50%;
     margin: 0 auto;
     text-align: center;
+}
+
+
+
+/************************************************
+   TIMESUP                              @timesup
+
+   The style for the time's up page
+************************************************/
+.timesup-wrapper h1 {
+    margin: 1em auto;
+}
+.timesup-wrapper p {
+    font-size: 1em;
+    width: 90%;
+    margin: 0 auto;
+}
+.timesup-wrapper button {
+    display: block;
+    margin: 0 auto;
 }
 
 /************************************************
