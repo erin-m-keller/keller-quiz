@@ -374,8 +374,7 @@ function getExistingScores() {
 /**
  * @saveToLocalStorage
  * saves the initials and high score in local
- * storage then redirects the user to the
- * high scores page
+ * storage 
  */
 function saveToLocalStorage(callback) {
   // initialize variables
@@ -420,9 +419,11 @@ function saveToLocalStorage(callback) {
 }
 /**
  * @saveHighscore
- * saves the initials and high score in local
- * storage then redirects the user to the
- * high scores page
+ * calls @saveToLocalStorage function to
+ * save the scores in local storage. 
+ * Redirects to high scores page, unless
+ * currentQuizScore is null, in this care
+ * an error message is displayed to the user
  */
 function saveHighscore(e) {
   // initialize variables
