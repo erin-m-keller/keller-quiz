@@ -59,10 +59,12 @@ function createHeader() {
  * returns the array in descending order
  */
 function sortData(arr) {
-    // sort array with highest values at the top
-    arr.sort(function(a, b) {
-        return parseFloat(b.score) - parseFloat(a.score);
-    });
+    if (arr) {
+        // sort array with highest values at the top
+        arr.sort(function(a, b) {
+            return parseFloat(b.score) - parseFloat(a.score);
+        });
+    }
     // return array
     return arr;
 }
@@ -100,8 +102,14 @@ function init() {
         cssHighScores = sortData(JSON.parse(localStorage.getItem("CssQuizHighScores"))),
         jsHighScores = sortData(JSON.parse(localStorage.getItem("JsQuizHighScores")));
     // create the html, css and js tables for the highscore page
-    createTable(htmlHighScores,"html");
-    createTable(cssHighScores,"css");
-    createTable(jsHighScores,"js");
+    if (htmlHighScores) {
+        createTable(htmlHighScores,"html");
+    }
+    if (cssHighScores) {
+        createTable(cssHighScores,"css");
+    }
+    if (jsHighScores) {
+        createTable(jsHighScores,"js");
+    }
 }
 init();

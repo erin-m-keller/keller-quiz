@@ -21,8 +21,52 @@ function handleForm(event) {
  * handles page redirect
  */
 function timesUp() {
-  // redirect to times up page
-  window.location.href = "./times-up.html";
+  // initialize variables
+  var timesWrapper = document.getElementsByClassName('timesup-wrapper')[0],
+      questionWrapper = document.getElementsByClassName("question-wrapper")[0],
+      heading = document.createElement("h1"),
+      para = document.createElement("p"),
+      formGroup = document.createElement("form"),
+      errorMsg = document.createElement("div"),
+      lbl = document.createElement("label"),
+      inp = document.createElement("input"),
+      btn = document.createElement("input");
+  // set the heading
+  heading.innerHTML = "Time's Up!";
+  // set the paragraph
+  para.innerHTML = "Unfortunately you did not answer all of the questions within the allotted time. Check out the available resources and try again.";
+  para.className = "text-muted";
+  // set label 
+  lbl.setAttribute("for","initials-input");
+  lbl.textContent = "Enter your initials:";
+  // set the text input
+  inp.type = "text";
+  inp.required = true;
+  inp.setAttribute("placeholder","Enter your initials");
+  inp.setAttribute("id","initials-input");
+  inp.className = "form-control";
+  inp.required = true;
+  // set the submit button
+  btn.type = "submit";
+  btn.value = "Check Answer";
+  btn.className = "btn btn-primary quiz-submit m-4";
+  // create error message container
+  errorMsg.setAttribute("id","error-msg");
+  // create the form
+  formGroup.className = "form-group"
+  formGroup.appendChild(lbl);
+  formGroup.appendChild(inp);
+  formGroup.appendChild(btn);
+  formGroup.appendChild(errorMsg);
+  formGroup.addEventListener('submit', saveHighscore);
+  // append the content to the page
+  timesWrapper.appendChild(heading);
+  timesWrapper.appendChild(para);
+  timesWrapper.appendChild(formGroup);
+  // hide questions
+  questionWrapper.style.display = "none";
+  // display times up
+  timesWrapper.style.opacity = 1;
 }
 /**
  * @fetchQuizData
@@ -38,12 +82,13 @@ async function fetchQuizData(callback) {
   for (i = 0; i < selectionRadio.length; i++) {
     // check if radio button is selected
     if (selectionRadio[i].checked) {
-      // assign value to global variable
-      selectedQuiz = selectionRadio[i].value;
+      // assign value to local storage
+      localStorage.setItem("selectedQuiz",selectionRadio[i].value);
       // break out of the loop, we have what we need
       break;
     }
   }
+  var selectedQuiz = localStorage.getItem("selectedQuiz");
   // if/else statement dependent on quiz selection type
   if (selectedQuiz === "HTML") {
     // fetch the html questions
@@ -69,6 +114,8 @@ function startQuiz(e) {
   var parent = document.getElementById("time-wrapper"),
       para = document.createElement("p"),
       span = document.createElement("span");
+  // remove the current score, if available
+  localStorage.removeItem("currentQuizScore");
   // set a class on the paragraph element
   para.setAttribute("class","time-remaining");
   // prevent default behavior
@@ -86,7 +133,8 @@ function startQuiz(e) {
     // reduce by 1
     timeRemaining--;
     // if time is less than or equal to 0
-    if (timeRemaining <= 0) {
+    if (timeRemaining === 0) {
+      console.log("1 time is up");
       // time is up and set the timer to 0
       node = document.createTextNode("0");
       span.appendChild(node);
@@ -177,7 +225,7 @@ function renderQuestion() {
   var checkAnswerBtn = document.createElement("input");
   checkAnswerBtn.type = "submit";
   checkAnswerBtn.value = "Check Answer";
-  checkAnswerBtn.className = "btn btn-primary quiz-submit"
+  checkAnswerBtn.className = "btn btn-primary quiz-submit";
   radioBtnForm.appendChild(checkAnswerBtn);
 };
 /**
@@ -229,6 +277,9 @@ function checkAnswer() {
       } else {
         // deduct time from the timer
         timeRemaining -= 10;
+        // increment the score by 0
+        totalPoints += 0;
+        localStorage.setItem("currentQuizScore", totalPoints);
         // display error message to the user
         msgWrapper.innerHTML = "<div class='alert alert-danger' role='alert'>Incorrect. " + selectedAnswer + " is not the correct response. The correct choice was " + quizQuestions[qId].answer + ". Time has been deducted from the timer.</div>";
       }
@@ -301,7 +352,8 @@ function submitQuiz() {
  */
 function getExistingScores() {
   // initialize variables
-  var existingScores = [];
+  var existingScores = [],
+      selectedQuiz = localStorage.getItem("selectedQuiz");
   // check if the user selected a quiz
   if (selectedQuiz) {
     // if/else checks for selected quiz type (html/css/js) to save the data correctly
@@ -325,20 +377,46 @@ function getExistingScores() {
  * storage then redirects the user to the
  * high scores page
  */
-function saveToLocalStorage(arr) {
-    // if/else checks for selected quiz type (html/css/js) to save the data correctly
-    if (selectedQuiz === "HTML") {
-      // add to HtmlQuizHighScores local storage
-      localStorage.setItem("HtmlQuizHighScores", JSON.stringify(arr));
-    } else if (selectedQuiz === "CSS") {
-      // add to CssQuizHighScores local storage
-      localStorage.setItem("CssQuizHighScores", JSON.stringify(arr));
-    } else if (selectedQuiz === "JavaScript") {
-      // add to JsQuizHighScores local storage
-      localStorage.setItem("JsQuizHighScores", JSON.stringify(arr));
+function saveToLocalStorage(callback) {
+  // initialize variables
+  var currentQuizScore = localStorage.getItem("currentQuizScore"),
+      userInitials = document.getElementById('initials-input').value,
+      highscoreObj = { name: userInitials, score: currentQuizScore },
+      newArr = [],
+      existingScores = getExistingScores(),
+      selectedQuiz = localStorage.getItem("selectedQuiz");
+    // if data exists already
+    if (existingScores) {
+      // if exists, concatenate the old list with the new one and save to local storage
+      newArr.push(highscoreObj);
+      combinedArr = existingScores.concat(newArr);
+      // if/else checks for selected quiz type (html/css/js) to save the data correctly
+      if (selectedQuiz === "HTML") {
+        // add to HtmlQuizHighScores local storage
+        localStorage.setItem("HtmlQuizHighScores", JSON.stringify(combinedArr));
+      } else if (selectedQuiz === "CSS") {
+        // add to CssQuizHighScores local storage
+        localStorage.setItem("CssQuizHighScores", JSON.stringify(combinedArr));
+      } else if (selectedQuiz === "JavaScript") {
+        // add to JsQuizHighScores local storage
+        localStorage.setItem("JsQuizHighScores", JSON.stringify(combinedArr));
+      }
+    } else {
+      // if/else checks for selected quiz type (html/css/js) to save the data correctly
+      if (selectedQuiz === "HTML") {
+        // add to HtmlQuizHighScores local storage
+        localStorage.setItem("HtmlQuizHighScores", JSON.stringify(newArr));
+      } else if (selectedQuiz === "CSS") {
+        // add to CssQuizHighScores local storage
+        localStorage.setItem("CssQuizHighScores", JSON.stringify(newArr));
+      } else if (selectedQuiz === "JavaScript") {
+        // add to JsQuizHighScores local storage
+        localStorage.setItem("JsQuizHighScores", JSON.stringify(newArr));
+      }
     }
     // remove the current score, we no longer need it
     localStorage.removeItem("currentQuizScore");
+    callback();
 }
 /**
  * @saveHighscore
@@ -349,30 +427,17 @@ function saveToLocalStorage(arr) {
 function saveHighscore(e) {
   // initialize variables
   var currentQuizScore = localStorage.getItem("currentQuizScore"),
-      userInitials = document.getElementById('initials-input').value,
-      existingScores = null,
-      highscoreObj = { name: userInitials, score: currentQuizScore }
-      newArr = [],
-      existingScores = getExistingScores(),
       timesupGroup = document.getElementById("error-msg");
   // prevents default behavior
   e.preventDefault();
   if (currentQuizScore != null) {
-    // check if local storage exists for the high scores
-    if (existingScores) {
-      // if exists, concatenate the old list with the new one and save to local storage
-      newArr.push(highscoreObj);
-      existingScores = existingScores.concat(newArr);
-      saveToLocalStorage(existingScores);
-    } else {
-      // save the new data to local storage
-      newArr.push(highscoreObj);
-      saveToLocalStorage(newArr);
-    }
-    // redirect to highscores page
-    window.location.href = "./high-scores.html";
+    // callback function will execute redirect once saveToLocalStorage has completed
+    saveToLocalStorage(function() {
+      // redirect to highscores page
+      window.location.href = "./high-scores.html";
+    });
   } else {
+    // display error message when user submits the times up page without taking the test
     timesupGroup.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">No quiz data found.<br />Return to the home page and take the quiz.</div>"
-    console.log("Quiz data not found");
   }
 };

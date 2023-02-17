@@ -250,8 +250,8 @@ form#quiz-form input[type="button"] {
     margin-top: 2em;
 }
 #submission-wrapper,
-.question-wrapper,
-.timeup-wrapper {
+.timesup-wrapper,
+.question-wrapper {
     position: relative;
     opacity: 0;
     -webkit-transition: opacity 3s;

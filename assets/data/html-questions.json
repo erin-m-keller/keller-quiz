@@ -44,7 +44,7 @@
     {
         "question": "How to create a hyperlink in HTML?",
         "choices": ["< a href=\"https://baconipsum.com/\"> < /a > ","<a url=\"https://baconipsum.com/\" https://baconipsum.com/ /a> ","<a link=\"https://baconipsum.com/\"> https://baconipsum.com/< /a > ","<a> https://baconipsum.com/ <https://baconipsum.com/ /a> "],
-        "answer": "<a href=\"https://baconipsum.com/\"> < /a > ",
+        "answer": "< a href=\"https://baconipsum.com/\"> < /a > ",
         "progress": 80
     },
     {
