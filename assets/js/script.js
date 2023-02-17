@@ -385,10 +385,10 @@ function saveToLocalStorage(callback) {
       newArr = [],
       existingScores = getExistingScores(),
       selectedQuiz = localStorage.getItem("selectedQuiz");
-    // if data exists already
+    // create a new highscore object
+    newArr.push(highscoreObj);
     if (existingScores) {
       // if exists, concatenate the old list with the new one and save to local storage
-      newArr.push(highscoreObj);
       combinedArr = existingScores.concat(newArr);
       // if/else checks for selected quiz type (html/css/js) to save the data correctly
       if (selectedQuiz === "HTML") {

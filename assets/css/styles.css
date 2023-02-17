@@ -99,6 +99,11 @@ table td {
 .progress-stacked {
     border-radius: 0 !important;
 }
+#html-nodata p,
+#css-nodata p,
+#js-nodata p {
+    font-size: 1em !important;
+}
 @media (min-width: 576px) {
     .card-columns {
         column-count: 2;

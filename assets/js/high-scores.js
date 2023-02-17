@@ -100,16 +100,31 @@ function init() {
     // initialize variables
     var htmlHighScores = sortData(JSON.parse(localStorage.getItem("HtmlQuizHighScores"))),
         cssHighScores = sortData(JSON.parse(localStorage.getItem("CssQuizHighScores"))),
-        jsHighScores = sortData(JSON.parse(localStorage.getItem("JsQuizHighScores")));
+        jsHighScores = sortData(JSON.parse(localStorage.getItem("JsQuizHighScores"))),
+        htmlWrapper = document.getElementById("html-nodata"),
+        cssWrapper = document.getElementById("css-nodata"),
+        jsWrapper = document.getElementById("js-nodata");
     // create the html, css and js tables for the highscore page
     if (htmlHighScores) {
         createTable(htmlHighScores,"html");
+    } else {
+        var para = document.createElement("p");
+        para.innerHTML = "No data found.<br />Take the quiz to populate data.";
+        htmlWrapper.appendChild(para);
     }
     if (cssHighScores) {
         createTable(cssHighScores,"css");
+    } else {
+        var para = document.createElement("p");
+        para.innerHTML = "No data found.<br />Take the quiz to populate data.";
+        cssWrapper.appendChild(para);
     }
     if (jsHighScores) {
         createTable(jsHighScores,"js");
+    } else {
+        var para = document.createElement("p");
+        para.innerHTML = "No data found.<br />Take the quiz to populate data.";
+        jsWrapper.appendChild(para);
     }
 }
 init();
