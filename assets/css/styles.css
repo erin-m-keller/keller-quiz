@@ -1,0 +1,257 @@
+/************************************************
+*
+*   Main Stylesheet
+*   @version (1.0)
+*   @date (2023)
+*
+*   1.) GENERAL ______________________ @general
+*   2.) CARD _________________________ @card
+*
+************************************************/
+
+/************************************************
+   GENERAL                              @general
+
+   The base styles for the page, text
+   and links. Includes utility class styles
+************************************************/
+:root {
+    --bg-color-one: #33353d;
+    --bg-color-two: #c08497;
+    --bg-color-three: #b0d0d3;
+    --bg-color-four: #f7e3af;
+    --bg-color-five: #006e90;
+    --bg-color-six: #f3eec3;
+    --react-blue: #61dafb;
+    --margin-line: #f4644d;
+    --lines: #48ceeb;
+    --white: #FFF;
+    --black: #000;
+    --font-main-style: "Roberto", sans-serif;
+    --font-paper-style: "Caveat", sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main-style);
+}
+html,
+body {
+    background-color: #FFF;
+}
+header,
+footer {
+    width: 100%;
+    height: 63px;
+    background-color: #575757;
+}
+main {
+    width: 100%;
+    min-height: 85vh;
+    background-image: url('../images/main-background.jpg');
+    background-position: left;
+    margin: 0 auto;
+    padding: 2em;
+}
+h1,
+h2 {
+    text-align: center;
+}
+img {
+    display: block;
+    height: 50px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+ul {
+    padding-left: 40px;
+    font-size: 20px;
+}
+p {
+    text-align: center;
+    font-size: 30px;
+}
+#progress-bar {
+    width: 0;
+    background-color: #0d6efd;
+    color: #FFF;
+}
+.progress, 
+.progress-stacked {
+    border-radius: 0 !important;
+}
+.navbar {
+    z-index: 2;
+}
+.nav-link {
+    font-weight: 600 !important;
+}
+.btn-primary {
+    display: block;
+    margin: 0 auto;
+}
+/*
+ * gradient animation css found
+ * here: https://codepen.io/P1N2O/pen/pyBNzX
+ * @Manuel Pinto
+ */
+@keyframes gradient {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/************************************************
+   CARD                                     @card
+
+   The style for the card
+************************************************/
+.card {
+    width: 80%;
+    max-width: 45em;
+    margin: 4em auto;
+}
+.start-quiz {
+    margin: 2em auto;
+    display: block;
+}
+
+/************************************************
+   COUNTDOWN TIMER                @countdownTimer
+
+   The style for the countdown timer
+************************************************/
+#time-wrapper {
+    position: absolute;
+    top: -77px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 3.5em;
+}
+.time-remaining {
+    font-weight: 600;
+    font-size: 1em;
+    padding: 0.5em;
+    background: rgb(230,241,74);
+    background: linear-gradient(0deg, rgba(230,241,74,1) 0%, rgba(195,211,80,1) 100%);
+    border-radius: 50%;
+    height: 3.5em;
+    width: 3.5em;
+    text-align: center;
+    position: relative;
+    background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+.time-remaining span {
+    background-color: #FFF;
+    border-radius: 50%;
+    padding: 0.5em;
+    height: 3.75em;
+    width: 3.75em;
+    display: block;
+    line-height: 2.5;
+    position: absolute;
+    top: 7px;
+    left: 0;
+    right: 0;
+    font-size: 0.7em;
+    margin: 0 auto;
+}
+
+/************************************************
+   QUESTIONS                           @questions
+
+   The style for the questions that 
+   are displayed
+************************************************/
+form {
+    margin: 2em auto;
+}
+.form-check-input[type=radio] {
+    float: left;
+}
+form#quiz-form label {
+    font-size: 1em;
+    line-height: 1;
+    white-space: normal;
+    margin-left: 30px;
+    display: block;
+}
+@media screen and (min-width: 900px) {
+    form label {
+        font-size: 1.15em;
+    }
+}
+#btn-container {
+    text-align: center;
+}
+.start-wrapper {
+    text-align: center;
+}
+.start-wrapper h1,
+.question-wrapper h1 {
+    font-size: 1.1em !important;
+    clear: both;
+}
+@media screen and (min-width: 900px) {
+    .start-wrapper h1,
+    .question-wrapper h1 {
+        font-size: 1.3em !important;
+        clear: both;
+    }
+}
+.start-wrapper p.card-subtitle {
+    font-size: 1em !important;
+}
+#submission-wrapper,
+.question-wrapper,
+#timeup-wrapper {
+    position: relative;
+    opacity: 0;
+    -webkit-transition: opacity 3s;
+    -moz-transition: opacity 3s;
+    -o-transition: opacity 3s;
+    transition: opacity 3s;
+}
+#submission-wrapper h2 {
+    font-size: 1.25em;
+}
+#submission-wrapper p {
+    font-size: 1em;
+}
+#submission-wrapper form {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/************************************************
+   FOOTER                                 @footer
+
+   The styles for the footer
+************************************************/
+.footer {
+    text-align: center;
+    height: 3rem;
+    width: 100%;
+    background-color: #E6F14A;
+    border-top: 3px solid #C3D350;
+    display: table;
+    padding: 0.5rem;
+  }
+.footer h3,
+.footer h3 > a {
+    font-size: 1em;
+    color: #000;
+    margin-bottom: 0;
+}
+.footer p,
+.footer p > a {
+    font-size: 0.95em;
+    color: #000;
+}
+.footer div.vertical-center {
+    display:table-cell;
+}
