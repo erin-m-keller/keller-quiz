@@ -132,7 +132,7 @@ function startQuiz(e) {
     para.appendChild(span);
     // reduce by 1
     timeRemaining--;
-    // if time is less than or equal to 0
+    // if time is equal to 0
     if (timeRemaining === 0) {
       console.log("1 time is up");
       // time is up and set the timer to 0

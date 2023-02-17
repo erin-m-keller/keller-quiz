@@ -84,7 +84,8 @@ table td {
 }
 .dropdown-item,
 .btn,
-.alert-danger {
+.alert-danger,
+.form-check label {
     font-family: var(--font-main-style) !important;
 }
 .form-check-input {
