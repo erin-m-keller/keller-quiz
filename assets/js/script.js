@@ -18,7 +18,7 @@ function handleForm(event) {
 };
 /**
  * @timesUp
- * handles page redirect
+ * handles functionality when the timer runs out
  */
 function timesUp() {
   // initialize variables
