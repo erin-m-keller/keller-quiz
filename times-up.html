@@ -50,9 +50,11 @@
             <h1>Time's Up!</h1>
             <p class="text-muted">Unfortunately you did not answer all of the questions within the allotted time. Check out the available resources and try again.</p>
             <form onsubmit="saveHighscore(event)">
-              <div class="form-group"><label for="initials-input">Enter your initials:</label>
+              <div class="form-group">
+                <label for="initials-input">Enter your initials:</label>
                 <input id="initials-input" class="form-control" placeholder="Enter your initials" type="text" required="true">
                 <button type="submit" class="btn btn-primary quiz-submit m-4">Save Highscore</button>
+                <div id="error-msg"></div>
               </div>
             </form>
           </div>

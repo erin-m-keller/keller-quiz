@@ -1,30 +1,81 @@
-// initialize the variables
+// initialize the global variables
 var quizQuestions = [],
     timeRemaining = 100,
     totalPoints = 0,
     qId = -1,
-    lastQuestionFlag = false;
-
-// fetch the javascript questions
-fetch("./assets/data/js-questions.json").then(response => response.json()).then(json => quizQuestions = json);
-
+    lastQuestionFlag = false,
+    selectedQuiz = "";
+/**
+ * @handleForm
+ * prevents form refresh on submit
+ * calls @checkAnswer function
+ */
 function handleForm(event) { 
+  // prevent default behavior
   event.preventDefault();
+  // call function
   checkAnswer();
 };
-
+/**
+ * @timesUp
+ * handles page redirect
+ */
 function timesUp() {
   // redirect to times up page
   window.location.href = "./times-up.html";
 }
-
-function startQuiz() {
+/**
+ * @fetchQuizData
+ * async function returns a promise and
+ * callback executes another function once
+ * data is available and this function
+ * has completed
+ */
+async function fetchQuizData(callback) {
+  // initialize variables
+  var selectionRadio = document.getElementsByName("quizSelection");
+  // loop through the available radio buttons
+  for (i = 0; i < selectionRadio.length; i++) {
+    // check if radio button is selected
+    if (selectionRadio[i].checked) {
+      // assign value to global variable
+      selectedQuiz = selectionRadio[i].value;
+      // break out of the loop, we have what we need
+      break;
+    }
+  }
+  // if/else statement dependent on quiz selection type
+  if (selectedQuiz === "HTML") {
+    // fetch the html questions
+    await fetch("./assets/data/html-questions.json").then(response => response.json()).then(json => quizQuestions = json);
+  } else if (selectedQuiz === "CSS") {
+    // fetch the css questions
+    await fetch("./assets/data/css-questions.json").then(response => response.json()).then(json => quizQuestions = json);
+  } else if (selectedQuiz === "JavaScript") {
+    // fetch the js questions
+    await fetch("./assets/data/js-questions.json").then(response => response.json()).then(json => quizQuestions = json);
+  }
+  // end - execute the next function
+  callback();
+}
+/**
+ * @startQuiz
+ * function starts a timer, displays the question
+ * wrapper and calls the function to render 
+ * a question
+ */
+function startQuiz(e) {
+  // initialize variables
   var parent = document.getElementById("time-wrapper"),
       para = document.createElement("p"),
       span = document.createElement("span");
+  // set a class on the paragraph element
   para.setAttribute("class","time-remaining");
+  // prevent default behavior
+  e.preventDefault();
   // run set interval to reduce the time remaining by 1 each second
   var quizTimer = setInterval(function () {
+    // initialize variables
     var node = document.createTextNode(timeRemaining);
     // empty elements before appending
     span.innerHTML = "";
@@ -34,14 +85,17 @@ function startQuiz() {
     para.appendChild(span);
     // reduce by 1
     timeRemaining--;
+    // if time is less than or equal to 0
     if (timeRemaining <= 0) {
-      // time is up
+      // time is up and set the timer to 0
       node = document.createTextNode("0");
       span.appendChild(node);
       para.appendChild(span);
       span.innerHTML = "";
       para.innerHTML = "";
+      // call the @timesUp function
       timesUp();
+      // stop the interval function
       clearInterval(quizTimer);
     }
   }, 1000); // 1000 milliseconds = 1 second
@@ -51,22 +105,31 @@ function startQuiz() {
   document.getElementsByClassName("start-wrapper")[0].style.display = "none";
   // display questions
   document.getElementsByClassName("question-wrapper")[0].style.opacity = 1;
-  renderQuestion();
+  // callback function will execute renderQuestion() once fetchQuizData has completed
+  fetchQuizData(function() {
+    // call @renderQuestion function
+    renderQuestion();
+  });
 };
-
-function renderQuestion() {
-  // initialize variables
+/**
+ * @renderQuestion
+ * function renders the current question
+ */
+function renderQuestion() {  
+  // increment question ID
   qId++;
+  // initialize variables
   var currentProgress = quizQuestions[qId].progress,
       question = document.getElementById("question"),
       choicesForm = document.getElementById("choices-form"),
       btnContainer = document.getElementById("btn-container"),
       progressBar = document.getElementById("progress-bar"),
-      currentQuestion = document.createTextNode(quizQuestions[qId].question),
       radioBtnForm = document.createElement('form'),
-      msgWrapper = document.getElementById("message-wrapper");
-  // set last question to true when on the last question
+      msgWrapper = document.getElementById("message-wrapper"),
+      currentQuestion = document.createTextNode(quizQuestions[qId].question);
+  // empty the msgWrapper element
   msgWrapper.innerHTML = "";
+  // set last question to true when on the last question
   if (qId === (quizQuestions.length - 1)) {
     lastQuestionFlag = true;
   } 
@@ -110,14 +173,19 @@ function renderQuestion() {
   }
   // append the new form to the form wrapper
   choicesForm.appendChild(radioBtnForm);
-  // create check answer button
+  // create check answer button and append to the form
   var checkAnswerBtn = document.createElement("input");
   checkAnswerBtn.type = "submit";
   checkAnswerBtn.value = "Check Answer";
   checkAnswerBtn.className = "btn btn-primary quiz-submit"
   radioBtnForm.appendChild(checkAnswerBtn);
 };
-
+/**
+ * @checkAnswer
+ * checks the users answer and display
+ * a success or an error message depending
+ * on whether or not the choice was correct
+ */
 function checkAnswer() {
   // initialize variables
   var radioInput = document.getElementsByName("choice-" + qId),
@@ -125,7 +193,6 @@ function checkAnswer() {
       quizForm = document.getElementById("quiz-form"),
       msgWrapper = document.getElementById("message-wrapper"),
       nextBtn = document.createElement("input");
-  
   // creates next button when user is not on the last question
   if (!lastQuestionFlag) {
     // create next button and append to the form
@@ -156,7 +223,7 @@ function checkAnswer() {
       if (selectedAnswer === quizQuestions[qId].answer) {
         // increment the score by 10
         totalPoints += 10;
-        localStorage.setItem("currentQuizScore", totalPoints)
+        localStorage.setItem("currentQuizScore", totalPoints);
         // display success message to the user
         msgWrapper.innerHTML = "<div class='alert alert-success' role='alert'>Correct! " + selectedAnswer + " is the correct response. Great job!</div>";
       } else {
@@ -176,7 +243,11 @@ function checkAnswer() {
     radioId.disabled = true;
   }
 };
-
+/**
+ * @submitQuiz
+ * submits the quiz and displays the
+ * add a high score div container
+ */
 function submitQuiz() {
   // initialize variables
   var progressBar = document.getElementById("progress-bar"),
@@ -188,7 +259,6 @@ function submitQuiz() {
       label = document.createElement("label"),
       txtInput = document.createElement("input"),
       saveBtn = document.createElement("button");
-  
   // hide question wrapper, fade in submission wrapper
   document.getElementsByClassName("question-wrapper")[0].style.opacity = 0;
   document.getElementsByClassName("question-wrapper")[0].innerHTML = "";
@@ -225,29 +295,84 @@ function submitQuiz() {
   // add div wrapper
   submissionWrapper.appendChild(initialsForm);
 };
-
+/**
+ * @getExistingScores
+ * function returns existing local storage
+ */
+function getExistingScores() {
+  // initialize variables
+  var existingScores = [];
+  // check if the user selected a quiz
+  if (selectedQuiz) {
+    // if/else checks for selected quiz type (html/css/js) to save the data correctly
+    if (selectedQuiz === "HTML") {
+      // add to HtmlQuizHighScores local storage
+      existingScores = JSON.parse(localStorage.getItem("HtmlQuizHighScores"));
+    } else if (selectedQuiz === "CSS") {
+      // add to CssQuizHighScores local storage
+      existingScores = JSON.parse(localStorage.getItem("CssQuizHighScores"));
+    } else if (selectedQuiz === "JavaScript") {
+      // add to JsQuizHighScores local storage
+      existingScores = JSON.parse(localStorage.getItem("JsQuizHighScores"));
+    }
+  }
+  // return the data
+  return existingScores;
+}
+/**
+ * @saveToLocalStorage
+ * saves the initials and high score in local
+ * storage then redirects the user to the
+ * high scores page
+ */
+function saveToLocalStorage(arr) {
+    // if/else checks for selected quiz type (html/css/js) to save the data correctly
+    if (selectedQuiz === "HTML") {
+      // add to HtmlQuizHighScores local storage
+      localStorage.setItem("HtmlQuizHighScores", JSON.stringify(arr));
+    } else if (selectedQuiz === "CSS") {
+      // add to CssQuizHighScores local storage
+      localStorage.setItem("CssQuizHighScores", JSON.stringify(arr));
+    } else if (selectedQuiz === "JavaScript") {
+      // add to JsQuizHighScores local storage
+      localStorage.setItem("JsQuizHighScores", JSON.stringify(arr));
+    }
+    // remove the current score, we no longer need it
+    localStorage.removeItem("currentQuizScore");
+}
+/**
+ * @saveHighscore
+ * saves the initials and high score in local
+ * storage then redirects the user to the
+ * high scores page
+ */
 function saveHighscore(e) {
   // initialize variables
-  var userInitials = document.getElementById('initials-input').value,
-      existingScores = JSON.parse(localStorage.getItem("quizHighScores")),
-      highscoreObj = { name: userInitials, score: localStorage.getItem("currentQuizScore") }
-      newArr = [];
-
-  // prevent form reloading the page
+  var currentQuizScore = localStorage.getItem("currentQuizScore"),
+      userInitials = document.getElementById('initials-input').value,
+      existingScores = null,
+      highscoreObj = { name: userInitials, score: currentQuizScore }
+      newArr = [],
+      existingScores = getExistingScores(),
+      timesupGroup = document.getElementById("error-msg");
+  // prevents default behavior
   e.preventDefault();
-  // check if local storage exists for the high scores
-  if (existingScores) {
-    // if exists, concatenate the old list with the new one
-    newArr.push(highscoreObj);
-    existingScores = existingScores.concat(newArr);
-    localStorage.setItem("quizHighScores", JSON.stringify(existingScores));
-    localStorage.removeItem("currentQuizScore");
+  if (currentQuizScore != null) {
+    // check if local storage exists for the high scores
+    if (existingScores) {
+      // if exists, concatenate the old list with the new one and save to local storage
+      newArr.push(highscoreObj);
+      existingScores = existingScores.concat(newArr);
+      saveToLocalStorage(existingScores);
+    } else {
+      // save the new data to local storage
+      newArr.push(highscoreObj);
+      saveToLocalStorage(newArr);
+    }
+    // redirect to highscores page
+    window.location.href = "./high-scores.html";
   } else {
-    // save to local storage
-    newArr.push(highscoreObj);
-    localStorage.setItem("quizHighScores", JSON.stringify(newArr));
-    localStorage.removeItem("currentQuizScore");
+    timesupGroup.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">No quiz data found.<br />Return to the home page and take the quiz.</div>"
+    console.log("Quiz data not found");
   }
-  // redirect to highscores page
-  window.location.href = "./high-scores.html";
 };

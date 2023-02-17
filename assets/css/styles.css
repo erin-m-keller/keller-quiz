@@ -9,6 +9,7 @@
 *   3.) COUNTDOWN TIMER ________ @countdownTimer
 *   4.) QUESTIONS ______________ @questions
 *   5.) TIMESUP ________________ @timesup
+*   5.) HIGH SCORES ____________ @highscores
 *   6.) FOOTER _________________ @footer
 *
 ************************************************/
@@ -64,14 +65,15 @@ p {
     font-size: 30px;
     font-family: var(--font-main-style);
 }
-#progress-bar {
-    width: 0;
-    background-color: #0d6efd;
-    color: #FFF;
+input::placeholder {
+    font-family: var(--font-main-style) !important;
 }
-.progress, 
-.progress-stacked {
-    border-radius: 0 !important;
+table td {
+    font-family: var(--font-main-style) !important;
+}
+.container {
+    width: 80%;
+    max-width: 1200px;
 }
 .navbar {
     z-index: 2;
@@ -85,11 +87,40 @@ p {
 .alert-danger {
     font-family: var(--font-main-style) !important;
 }
-input::placeholder {
-    font-family: var(--font-main-style) !important;
+.form-check-input {
+    border: 1px solid #000;
 }
-table td {
-    font-family: var(--font-main-style) !important;
+#progress-bar {
+    width: 0;
+    background-color: #0d6efd;
+    color: #FFF;
+}
+.progress, 
+.progress-stacked {
+    border-radius: 0 !important;
+}
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-columns {
+        column-count: 4;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 5;
+    }
 }
 /*
  * gradient animation css found
@@ -167,7 +198,7 @@ table td {
    are displayed
 ************************************************/
 form {
-    margin: 2em auto;
+    margin: 0 auto;
 }
 .form-check-input[type=radio] {
     float: left;
@@ -185,17 +216,26 @@ form#quiz-form label {
         font-size: 1.15em;
     }
 }
+form#quiz-form input[type="submit"],
+form#quiz-form input[type="button"] {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
 #btn-container {
     text-align: center;
 }
 .start-wrapper {
     text-align: center;
 }
+.start-wrapper .selection-form {
+    width: 10em;
+}
 .start-wrapper h1,
 .question-wrapper h1 {
     font-size: 1.1em !important;
-    clear: both;
+    margin: 2em auto;
     font-family: var(--font-main-style);
+    width: 80%;
 }
 @media screen and (min-width: 900px) {
     .start-wrapper h1,
@@ -207,6 +247,7 @@ form#quiz-form label {
 }
 .start-wrapper p.card-subtitle {
     font-size: 1em !important;
+    margin-top: 2em;
 }
 #submission-wrapper,
 .question-wrapper,
@@ -258,6 +299,17 @@ form#quiz-form label {
 }
 .timesup-wrapper form label {
     margin-top: 1em;
+    font-family: var(--font-main-style);
+}
+
+/************************************************
+   HIGH SCORES                        @highscores
+
+   The style for the high scores page
+************************************************/
+.high-scores h2 {
+    margin: 1em auto;
+    font-size: 1.2em;
     font-family: var(--font-main-style);
 }
 

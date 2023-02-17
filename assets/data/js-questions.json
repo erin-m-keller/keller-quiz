@@ -1,6 +1,6 @@
 [
     {
-        "question": "Javascript is an _______ language?",
+        "question": "Javascript is a(n) _______ language?",
         "choices": ["Object-Oriented","Object-Based","Procedural","None of the above"],
         "answer": "Object-Oriented",
         "progress": 10

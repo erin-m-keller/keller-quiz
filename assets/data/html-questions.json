@@ -1,0 +1,62 @@
+[
+    {
+        "question": "HTML stands for _______ ?",
+        "choices": ["HighText Machine Language","HyperText and links Markup Language","HyperText Markup Language","None of the above"],
+        "answer": "HyperText Markup Language",
+        "progress": 10
+    },
+    {
+        "question": "The correct sequence of HTML tags for starting a webpage is _______ ?",
+        "choices": ["Head, Title, HTML, body","HTML, Body, Title, Head","HTML, Head, Title, Body", "HTML, Head, Body, Title"],
+        "answer": "HTML, Head, Title, Body",
+        "progress": 20
+    },
+    {
+        "question": "Which of the following element is responsible for making the text bold in HTML?",
+        "choices": ["< pre > ","< a > ","< b > ","< br > "],
+        "answer": "< b > ",
+        "progress": 30
+    },
+    {
+        "question": "Which of the following tag is used for inserting the largest heading in HTML?",
+        "choices": ["< h3 > ","< h1 > ","< h5 > ","< h6 > "],
+        "answer": "< h1 > ",
+        "progress": 40
+    },
+    {
+        "question": "Which of the following tag is used to insert a line-break in HTML?",
+        "choices": ["< br > ","< a > ","< pre > ","< b > "],
+        "answer": "< br > ",
+        "progress": 50
+    },
+    {
+        "question": "How to create an unordered list (a list with the list items in bullets) in HTML?",
+        "choices": ["< ul > ","< ol > ","< li > ","< i > "],
+        "answer": "< ul > ",
+        "progress": 60
+    },
+    {
+        "question": "Which character is used to represent the closing of a tag in HTML?",
+        "choices": ["\\","!","/","."],
+        "answer": "/",
+        "progress": 70
+    },
+    {
+        "question": "How to create a hyperlink in HTML?",
+        "choices": ["< a href=\"https://baconipsum.com/\"> < /a > ","<a url=\"https://baconipsum.com/\" https://baconipsum.com/ /a> ","<a link=\"https://baconipsum.com/\"> https://baconipsum.com/< /a > ","<a> https://baconipsum.com/ <https://baconipsum.com/ /a> "],
+        "answer": "<a href=\"https://baconipsum.com/\"> < /a > ",
+        "progress": 80
+    },
+    {
+        "question": "How to create an ordered list (a list with the list items in numbers) in HTML?",
+        "choices": ["< ul > ","< ol > ","< li > ","< i > "],
+        "answer": "< ol > ",
+        "progress": 90
+    },
+    {
+        "question": "Which of the following element is responsible for making the text italic in HTML?",
+        "choices": ["< i > ","< italic > ","< it > ","< pre > "],
+        "answer": "< i > ",
+        "progress": 95
+    }
+]

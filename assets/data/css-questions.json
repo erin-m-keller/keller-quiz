@@ -1,0 +1,62 @@
+[
+    {
+        "question": "CSS stands for _______ ?",
+        "choices": ["Cascade style sheets","Color and style sheets","Cascading style sheets","None of the above"],
+        "answer": "Cascading style sheets",
+        "progress": 10
+    },
+    {
+        "question": "Which of the following is the correct syntax for referring the external style sheet?",
+        "choices": ["<style src=example.css>","<style src=\"example.css\">","<stylesheet>example.css</stylesheet>", "<link rel=\"stylesheet\" type=\"text/css\" href=\"example.css\">"],
+        "answer": "<link rel=\"stylesheet\" type=\"text/css\" href=\"example.css\">",
+        "progress": 20
+    },
+    {
+        "question": "The property in CSS used to change the background color of an element is _______ ?",
+        "choices": ["bgcolor","color","background-color","All of the above"],
+        "answer": "background-color",
+        "progress": 30
+    },
+    {
+        "question": "The property in CSS used to change the text color of an element is _______ ?",
+        "choices": ["bgcolor","color","background-color","All of the above"],
+        "answer": "color",
+        "progress": 40
+    },
+    {
+        "question": "The CSS property used to control the element's font-size is _______ ?",
+        "choices": ["text-style","text-size","font-size","None of the above"],
+        "answer": "font-size",
+        "progress": 50
+    },
+    {
+        "question": "The HTML attribute used to define the inline styles is _______ ?",
+        "choices": ["style","styles","class","None of the above"],
+        "answer": "style",
+        "progress": 60
+    },
+    {
+        "question": "The HTML attribute used to define the internal stylesheet is _______ ?",
+        "choices": ["<style>","style","<link>","<script>"],
+        "answer": "<style>",
+        "progress": 70
+    },
+    {
+        "question": "Which of the following CSS property is used to set the background image of an element?",
+        "choices": ["background-attachment","background-image","background-color","None of the above"],
+        "answer": "background-image",
+        "progress": 80
+    },
+    {
+        "question": "Which of the following is the correct syntax to make the background-color of all paragraph elements to yellow?",
+        "choices": ["p {background-color : yellow;}","p {background-color : #yellow;}","all {background-color : yellow;}","all p {background-color : #yellow;}"],
+        "answer": "p {background-color : yellow;}",
+        "progress": 90
+    },
+    {
+        "question": "Which of the following is the correct syntax to display the hyperlinks without any underline?",
+        "choices": ["a {text-decoration : underline;}","a {decoration : no-underline;}","a {text-decoration : none;}","None of the above"],
+        "answer": "a {text-decoration : none;}",
+        "progress": 95
+    }
+]
