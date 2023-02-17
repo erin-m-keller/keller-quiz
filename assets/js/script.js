@@ -1,70 +1,12 @@
-var quizQuestions = [
-  {
-      question: "Javascript is an _______ language?",
-      choices: ["Object-Oriented","Object-Based","Procedural","None of the above"],
-      answer: "Object-Oriented",
-      progress: 10
-  },
-  {
-      question: "Which of the following keywords is used to define a variable in Javascript?",
-      choices: ["var","let","Both A and B", "None of the above"],
-      answer: "Both A and B",
-      progress: 20
-  },
-  {
-      question: "Which of the following methods is used to access HTML elements using Javascript?",
-      choices: ["getElementById()","getElementsByClassName()","Both A and B","None of the above"],
-      answer: "Both A and B",
-      progress: 30
-  },
-  {
-      question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
-      choices: ["Throws an error","Ignores the statements","Gives a warning","None of the above"],
-      answer: "Ignores the statements",
-      progress: 40
-  },
-  {
-      question: "Which of the following methods can be used to display data in some form using Javascript?",
-      choices: ["document.write()","console.log()","window.alert()","All of the above"],
-      answer: "All of the above",
-      progress: 50
-  },
-  {
-      question: "How can a datatype be declared to be a constant type?",
-      choices: ["const","var","let","constant"],
-      answer: "const",
-      progress: 60
-  },
-  {
-      question: "What keyword is used to check whether a given property is valid or not?",
-      choices: ["in","is in","exists","lies"],
-      answer: "in",
-      progress: 70
-  },
-  {
-      question: "What is the use of the <noscript> tag in Javascript?",
-      choices: ["The contents are displayed by non-JS-based browsers","Clears all the cookies and cache","Both A and B","None of the above"],
-      answer: "The contents are displayed by non-JS-based browsers",
-      progress: 80
-  },
-  {
-      question: "When an operator's value is NULL, the typeof returned by the unary operator is:",
-      choices: ["Boolean","Undefined","Object","Integer"],
-      answer: "Object",
-      progress: 90
-  },
-  {
-      question: "What does the Javascript “debugger” statement do?",
-      choices: ["It will debug all the errors in the program at runtime","It acts as a breakpoint in the program","It will debug the error in the current statement if any","All of the above"],
-      answer: "It acts as a breakpoint in the program",
-      progress: 95
-  }
-];
-
-var timeRemaining = 100,
+// initialize the variables
+var quizQuestions = [],
+    timeRemaining = 100,
     totalPoints = 0,
     qId = -1,
     lastQuestionFlag = false;
+
+// fetch the javascript questions
+fetch("./assets/data/js-questions.json").then(response => response.json()).then(json => quizQuestions = json);
 
 function handleForm(event) { 
   event.preventDefault();
