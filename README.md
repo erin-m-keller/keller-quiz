@@ -1,20 +1,40 @@
-# Prework Study Guide Webpage
+# Coding Quiz Challenge
 
 ## Description
 
-This Prework Study Guide was created for boot camp students who were going through the Prework. It contains notes on HTML, CSS, Git, and JavaScript.
+This challenge is about building a timed javascript quiz.
 
-## Usage
+## User Story
 
-To use this Prework Study Guide, you can review the notes in each section. For suggestions on what to study first, open the Chrome DevTools by pressing Command+Option+I (macOS) or Control+Shift+I (Windows). A console panel should open either below or to the side of the webpage in the browser. There you will see a list of topics we learned from the prework along with a suggestion on which topic to study first.
+```
+AS A coding boot camp student
+I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
+SO THAT I can gauge my progress compared to my peers
+```
+
+## Acceptance Criteria
+
+```
+GIVEN I am taking a code quiz
+WHEN I click the start button
+THEN a timer starts and I am presented with a question
+WHEN I answer a question
+THEN I am presented with another question
+WHEN I answer a question incorrectly
+THEN time is subtracted from the clock
+WHEN all questions are answered or the timer reaches 0
+THEN the game is over
+WHEN the game is over
+THEN I can save my initials and score
+```
 
 ## Screenshot
 
-![preworkStudyGuide](./assets/finished-product.png)
+![QuizScreen](./assets/images/finished-product.png)
 
 ## Deployed page
 
-[https://erin-m-keller.github.io/prework-study-guide/](https://erin-m-keller.github.io/prework-study-guide/)
+Page published at: [https://erin-m-keller.github.io/keller-quiz/](https://erin-m-keller.github.io/keller-quiz/)
 
 ## License
 
