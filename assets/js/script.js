@@ -218,7 +218,7 @@ function checkAnswer() {
         msgWrapper.innerHTML = "<div class='alert alert-success' role='alert'>Correct! " + selectedAnswer + " is the correct response. Great job!</div>";
       } else {
         // deduct time from the timer
-        timeRemaining -= 15;
+        timeRemaining -= 10;
         // display error message to the user
         msgWrapper.innerHTML = "<div class='alert alert-danger' role='alert'>Incorrect. " + selectedAnswer + " is not the correct response. The correct choice was " + quizQuestions[qId].answer + ". Time has been deducted from the timer.</div>";
       }
