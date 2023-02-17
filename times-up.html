@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Laila:100,200,300,400,500,600,700,800,900">
     <title>Code Quiz</title>
 </head>
 <body>
@@ -48,8 +49,11 @@
             <img src="./assets/images/clock-icon.svg" alt="A clock icon" />
             <h1>Time's Up!</h1>
             <p class="text-muted">Unfortunately you did not answer all of the questions within the allotted time. Check out the available resources and try again.</p>
-            <form action="./index.html">
-              <button type="submit" class="btn btn-primary start-quiz">Try Again</button>
+            <form onsubmit="saveHighscore(event)">
+              <div class="form-group"><label for="initials-input">Enter your initials:</label>
+                <input id="initials-input" class="form-control" placeholder="Enter your initials" type="text" required="true">
+                <button type="submit" class="btn btn-primary quiz-submit m-4">Save Highscore</button>
+              </div>
             </form>
           </div>
         </div>
@@ -60,5 +64,6 @@
       <p><a href="https://www.freepik.com/free-vector/network-mesh-wire-digital-technology-background_10136775.htm#query=website%20background&position=10&from_view=keyword&track=ais">Background Image by starline</a> on Freepik</p>
     </footer>
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

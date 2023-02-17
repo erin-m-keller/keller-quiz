@@ -214,6 +214,7 @@ function checkAnswer() {
       if (selectedAnswer === quizQuestions[qId].answer) {
         // increment the score by 10
         totalPoints += 10;
+        localStorage.setItem("currentQuizScore", totalPoints)
         // display success message to the user
         msgWrapper.innerHTML = "<div class='alert alert-success' role='alert'>Correct! " + selectedAnswer + " is the correct response. Great job!</div>";
       } else {
@@ -287,7 +288,7 @@ function saveHighscore(e) {
   // initialize variables
   var userInitials = document.getElementById('initials-input').value,
       existingScores = JSON.parse(localStorage.getItem("quizHighScores")),
-      highscoreObj = { name: userInitials, score: totalPoints }
+      highscoreObj = { name: userInitials, score: localStorage.getItem("currentQuizScore") }
       newArr = [];
 
   // prevent form reloading the page
@@ -296,12 +297,14 @@ function saveHighscore(e) {
   if (existingScores) {
     // if exists, concatenate the old list with the new one
     newArr.push(highscoreObj);
-    existingScores = existingScores.concat(newArr)
-    localStorage.setItem("quizHighScores", JSON.stringify(existingScores))
+    existingScores = existingScores.concat(newArr);
+    localStorage.setItem("quizHighScores", JSON.stringify(existingScores));
+    localStorage.removeItem("currentQuizScore");
   } else {
     // save to local storage
     newArr.push(highscoreObj);
-    localStorage.setItem("quizHighScores", JSON.stringify(newArr))
+    localStorage.setItem("quizHighScores", JSON.stringify(newArr));
+    localStorage.removeItem("currentQuizScore");
   }
   // redirect to highscores page
   window.location.href = "./high-scores.html";

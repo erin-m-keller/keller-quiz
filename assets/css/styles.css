@@ -4,8 +4,12 @@
 *   @version (1.0)
 *   @date (2023)
 *
-*   1.) GENERAL ______________________ @general
-*   2.) CARD _________________________ @card
+*   1.) GENERAL ________________ @general
+*   2.) CARD ___________________ @card
+*   3.) COUNTDOWN TIMER ________ @countdownTimer
+*   4.) QUESTIONS ______________ @questions
+*   5.) TIMESUP ________________ @timesup
+*   6.) FOOTER _________________ @footer
 *
 ************************************************/
 
@@ -16,24 +20,11 @@
    and links. Includes utility class styles
 ************************************************/
 :root {
-    --bg-color-one: #33353d;
-    --bg-color-two: #c08497;
-    --bg-color-three: #b0d0d3;
-    --bg-color-four: #f7e3af;
-    --bg-color-five: #006e90;
-    --bg-color-six: #f3eec3;
-    --react-blue: #61dafb;
-    --margin-line: #f4644d;
-    --lines: #48ceeb;
-    --white: #FFF;
-    --black: #000;
-    --font-main-style: "Roberto", sans-serif;
-    --font-paper-style: "Caveat", sans-serif;
+    --font-main-style: "Laila", sans-serif;
 }
 * {
     margin: 0;
     padding: 0;
-    font-family: var(--font-main-style);
 }
 html,
 body {
@@ -71,6 +62,7 @@ ul {
 p {
     text-align: center;
     font-size: 30px;
+    font-family: var(--font-main-style);
 }
 #progress-bar {
     width: 0;
@@ -86,10 +78,18 @@ p {
 }
 .nav-link {
     font-weight: 600 !important;
+    font-family: var(--font-main-style) !important;
 }
-.btn-primary {
-    display: block;
-    margin: 0 auto;
+.dropdown-item,
+.btn,
+.alert-danger {
+    font-family: var(--font-main-style) !important;
+}
+input::placeholder {
+    font-family: var(--font-main-style) !important;
+}
+table td {
+    font-family: var(--font-main-style) !important;
 }
 /*
  * gradient animation css found
@@ -178,6 +178,7 @@ form#quiz-form label {
     white-space: normal;
     margin-left: 30px;
     display: block;
+    font-family: var(--font-main-style);
 }
 @media screen and (min-width: 900px) {
     form label {
@@ -194,12 +195,14 @@ form#quiz-form label {
 .question-wrapper h1 {
     font-size: 1.1em !important;
     clear: both;
+    font-family: var(--font-main-style);
 }
 @media screen and (min-width: 900px) {
     .start-wrapper h1,
     .question-wrapper h1 {
         font-size: 1.3em !important;
         clear: both;
+        font-family: var(--font-main-style);
     }
 }
 .start-wrapper p.card-subtitle {
@@ -217,17 +220,17 @@ form#quiz-form label {
 }
 #submission-wrapper h2 {
     font-size: 1.25em;
+    font-family: var(--font-main-style);
 }
 #submission-wrapper p {
     font-size: 1em;
+    font-family: var(--font-main-style);
 }
 #submission-wrapper form {
     width: 50%;
     margin: 0 auto;
     text-align: center;
 }
-
-
 
 /************************************************
    TIMESUP                              @timesup
@@ -236,15 +239,26 @@ form#quiz-form label {
 ************************************************/
 .timesup-wrapper h1 {
     margin: 1em auto;
+    font-family: var(--font-main-style);
 }
 .timesup-wrapper p {
     font-size: 1em;
     width: 90%;
     margin: 0 auto;
+    font-family: var(--font-main-style) !important;
 }
 .timesup-wrapper button {
-    display: block;
+    display: block !important;
+    margin: 1em auto !important;
+}
+.timesup-wrapper form {
+    width: 90%;
     margin: 0 auto;
+    text-align: center;
+}
+.timesup-wrapper form label {
+    margin-top: 1em;
+    font-family: var(--font-main-style);
 }
 
 /************************************************
@@ -266,11 +280,13 @@ form#quiz-form label {
     font-size: 1em;
     color: #000;
     margin-bottom: 0;
+    font-family: var(--font-main-style);
 }
 .footer p,
 .footer p > a {
     font-size: 0.95em;
     color: #000;
+    font-family: var(--font-main-style);
 }
 .footer div.vertical-center {
     display:table-cell;

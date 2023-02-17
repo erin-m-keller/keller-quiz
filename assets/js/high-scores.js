@@ -27,14 +27,17 @@ function init() {
     }
     // create the table header
     for (var k = 0; k <= 2; k++) {
+        // initialize the variables
         var tblCell3 = document.createElement('td'),
             tblCell4 = document.createElement('td');
+        // append text to the table cells
         tblCell3.appendChild(document.createTextNode("Initials"));
         tblCell4.appendChild(document.createTextNode("Score"));
     }
     // append the table head and body to the table
     tblHeadRow.appendChild(tblCell3);
     tblHeadRow.appendChild(tblCell4);
+    tblHead.className = "table-dark";
     tblHead.appendChild(tblHeadRow);
     highscoreTbl.appendChild(tblHead);
     highscoreTbl.appendChild(tblBody);
