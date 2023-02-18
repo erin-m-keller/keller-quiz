@@ -133,7 +133,7 @@ function startQuiz(e) {
     // reduce by 1
     timeRemaining--;
     // if time is equal to 0
-    if (timeRemaining === 0) {
+    if (timeRemaining <= 0) {
       console.log("1 time is up");
       // time is up and set the timer to 0
       node = document.createTextNode("0");
