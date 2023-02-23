@@ -2,11 +2,11 @@
 
 ## Description
 
-This challenge is about building a timed javascript quiz.
+This challenge is about building a timed coding quiz.
 
 ## User Story
 
-```
+```md
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
@@ -14,7 +14,7 @@ SO THAT I can gauge my progress compared to my peers
 
 ## Acceptance Criteria
 
-```
+```md
 GIVEN I am taking a code quiz
 WHEN I click the start button
 THEN a timer starts and I am presented with a question
@@ -34,8 +34,8 @@ THEN I can save my initials and score
 
 ## Deployed page
 
-Page published at: [https://erin-m-keller.github.io/keller-quiz/](https://erin-m-keller.github.io/keller-quiz/)
+[View Published Page](https://erin-m-keller.github.io/keller-quiz/)
 
 ## License
 
-Please refer to the LICENSE in the repo.
+[MIT](https://choosealicense.com/licenses/mit/)
