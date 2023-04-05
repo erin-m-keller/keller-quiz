@@ -1,4 +1,4 @@
-# Coding Quiz Challenge
+# Timed Coding Quiz
 
 ## Description
 
