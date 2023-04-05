@@ -14,11 +14,6 @@ This application is a timed coding quiz, it has three categories: HTML, CSS, and
 
 ## Technology Stack
 
-![HTML5](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
-![javaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![bootStrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
-
 ![HTML5](https://img.shields.io/badge/-HTML5-61DAFB?color=red&style=flat)
 ![CSS](https://img.shields.io/badge/-CSS-61DAFB?color=orange&style=flat)
 ![javaScript](https://img.shields.io/badge/-JavaScript-61DAFB?color=yellow&style=flat)
